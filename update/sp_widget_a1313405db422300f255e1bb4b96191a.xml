@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>sample</category>
+        <client_script><![CDATA[function() {	
+	var c = this;		
+  c.add = function() {	
+		//alert("Tamaraj");
+		console.log("Tamraj");
+		c.server.update().then(function(data) {		
+			console.log("message", data.message)
+			c.data.action=undifined;
+			c.data.message="";
+		})
+		
+	//	c.data.message = (c.data.sometext) ? 'Hello ' + c.data.sometext + '!' : '';
+	}
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>h1 {
+color: #428bca;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data>{
+	"data": {
+		"sometext": "world"
+	}
+}</demo_data>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>Copy of Copy of Hello World 2</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {	
+	if(input)
+		{
+	if(input.tamraj.length > 0)
+		{
+			var inc=new GlideRecord("incident");
+			inc.initialize();
+			inc.caller_id=gs.getUserID();
+			//inc.urgency=3;
+			//inc.priority=3;
+			inc.short_description="TAMRAJ"+input.tamraj;
+			inc.update();
+			var text=inc.sys_id;
+			data.message ="incident.do?sys_id="+inc.sys_id;
+		}}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-11-26 10:50:39</sys_created_on>
+        <sys_id>a1313405db422300f255e1bb4b96191a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Copy of Copy of Hello World 2</sys_name>
+        <sys_package display_value="Rising Sun" source="x_70889_rising_sun">448ca845db022300f255e1bb4b96191b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Rising Sun">448ca845db022300f255e1bb4b96191b</sys_scope>
+        <sys_update_name>sp_widget_a1313405db422300f255e1bb4b96191a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-11-26 10:50:39</sys_updated_on>
+        <template><![CDATA[<div>
+  <h3>Enteryourtamraj issue</h3>
+
+<input type="text" ng-model="c.data.tamraj"/>  <button type="submit" ng-click="c.add()" class="btn btn-primary">Post Tamraj ticket</button>
+  <button type="reset" value="Reset">Reset</button>
+ <h1>{{ c.data.message }}</h1>
+  <a href="{{c.data.message}}">Click to open tamraj incident</a>
+ ]]></template>
+    </sp_widget>
+</record_update>
